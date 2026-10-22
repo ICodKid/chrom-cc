@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="CHROM.CC is undergoing construction. Something new is coming to the Minecraft community.">
+  <title>CHROM.CC — Under Construction</title>
+  <link rel="icon" type="image/jpeg" href="assets/mantis-blade.jpg">
+  <meta property="og:title" content="CHROM.CC — Under Construction">
+  <meta property="og:description" content="The CHROM Minecraft community website is being built. Join our Discord for updates.">
+  <meta property="og:image" content="https://chrom.cc/assets/mantis-blade.jpg">
+  <style>
+    :root { color-scheme: dark; --bg:#08090b; --surface:#121417; --line:#292b30; --muted:#85878f; --white:#f0f0f0; --red:#e33a41; --amber:#ecc34a; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; background:var(--bg); color:var(--white); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; overflow-x:hidden; }
+    body::before { content:""; pointer-events:none; position:fixed; inset:0; z-index:5; opacity:.13; background:repeating-linear-gradient(0deg,transparent 0 3px,#777 4px 4.5px); mix-blend-mode:screen; }
+    .ambient { position:fixed; inset:0; z-index:-1; background:radial-gradient(ellipse at 50% 42%,#2e1116 0%,#101014 36%,#08090b 74%); }
+    a { color:inherit; text-decoration:none; }
+    .frame { min-height:100svh; display:flex; flex-direction:column; position:relative; }
+    .frame::before, .frame::after { content:""; position:absolute; width:12px; height:12px; border-color:#65656a; pointer-events:none; }
+    .frame::before { top:23px; left:23px; border-top:1px solid; border-left:1px solid; }
+    .frame::after { top:23px; right:23px; border-top:1px solid; border-right:1px solid; }
+    header { display:flex; align-items:center; justify-content:space-between; padding:34px clamp(26px,6vw,110px) 20px; gap:20px; }
+    .brand { display:flex; align-items:center; gap:13px; font-size:21px; font-weight:850; letter-spacing:.16em; }
+    .brand-mark { width:32px; height:32px; object-fit:cover; border:1px solid #525357; background:#000; }
+    .header-label { font: 11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; color:#999ba1; letter-spacing:.14em; }
+    .header-label .live { display:inline-block; width:6px; height:6px; margin-right:9px; background:var(--red); border-radius:50%; box-shadow:0 0 12px #d83038; }
+    main { width:min(1140px,calc(100% - 44px)); margin:auto; padding:20px 0 80px; }
+    .status { display:inline-flex; align-items:center; gap:12px; color:var(--amber); border:1px solid #66552e; padding:10px 15px; background:#201a12b3; font: 11px/1.2 ui-monospace,Consolas,monospace; font-weight:700; letter-spacing:.18em; }
+    .status::before { content:"◆"; font-size:10px; }
+    .hero { display:grid; grid-template-columns:1.06fr .94fr; align-items:center; gap:clamp(22px,5vw,84px); min-height:530px; }
+    .copy { position:relative; z-index:1; }
+    .eyebrow { color:var(--red); font:700 11px/1.5 ui-monospace,Consolas,monospace; letter-spacing:.24em; margin:0 0 21px; }
+    h1 { font-size:clamp(52px,7vw,98px); text-transform:uppercase; letter-spacing:-.07em; line-height:.94; margin:25px 0 24px; font-weight:900; }
+    h1 span { color:transparent; -webkit-text-stroke:1.3px #d1d1d3; }
+    .sub { max-width:480px; color:#a2a3aa; line-height:1.8; font-size:15px; margin:0 0 29px; }
+    .divider { width:54px; height:3px; background:var(--red); margin:0 0 27px; }
+    .copy-feedback { display:block; margin-top:12px; min-height:18px; color:#d0d2d5; font:11px ui-monospace,Consolas,monospace; letter-spacing:.05em; }
+    .button:focus-visible, a:focus-visible { outline:2px solid var(--amber); outline-offset:4px; }
+    .actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+    .button { border:1px solid #47494e; background:#17191c; padding:15px 21px; text-transform:uppercase; font-size:12px; font-weight:750; letter-spacing:.11em; min-height:48px; display:inline-flex; gap:12px; align-items:center; justify-content:center; cursor:pointer; transition:background .2s,border-color .2s,transform .2s; font-family:inherit; color:white; }
+    .button:hover { background:#25272b; border-color:#d6d6d8; transform:translateY(-2px); }
+    .button.primary { background:#e3e3e6; color:#111216; border-color:#e3e3e6; }
+    .button.primary:hover { background:white; }
+    .art { position:relative; min-width:0; display:flex; justify-content:center; align-items:center; }
+    .art::before { content:""; position:absolute; width:min(100%,430px); aspect-ratio:1; border:1px solid #393a40; transform:rotate(45deg) scale(.78); opacity:.6; }
+    .art::after { content:"+  SYSTEM // 01"; position:absolute; bottom:0; right:0; color:#777b82; letter-spacing:.19em; font:10px ui-monospace,Consolas,monospace; }
+    .blade-image { width:min(100%,490px); aspect-ratio:1; object-fit:cover; mix-blend-mode:lighten; filter:contrast(1.1) grayscale(1); clip-path:polygon(8% 0,100% 0,100% 91%,91% 100%,0 100%,0 8%); }
+    .bottom { border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; grid-template-columns:repeat(3,1fr); background:#0c0d0f; }
+    .info { padding:22px 26px; display:flex; flex-direction:column; gap:9px; }
+    .info + .info { border-left:1px solid var(--line); }
+    .info small { font:11px ui-monospace,Consolas,monospace; color:#777980; letter-spacing:.14em; text-transform:uppercase; }
+    .info strong { font:700 13px ui-monospace,Consolas,monospace; letter-spacing:.05em; }
+    .info strong a:hover { color:#f25a63; }
+    .info strong button { padding:2px 8px; margin-left:9px; background:transparent; border:1px solid #55565a; color:#f0f0f0; cursor:pointer; font:10px ui-monospace,Consolas,monospace; vertical-align:middle; }
+    .info strong button:hover { border-color:var(--amber); color:var(--amber); }
+    .info strong button:focus-visible { outline:2px solid var(--amber); outline-offset:3px; }
+    footer { max-width:1320px; width:100%; margin:0 auto; padding:22px clamp(26px,6vw,110px) 28px; display:flex; justify-content:space-between; gap:20px; color:#6d6f76; font:10px ui-monospace,Consolas,monospace; letter-spacing:.1em; }
+    footer a:hover { color:#fff; }
+    .tape { height:36px; overflow:hidden; border-top:1px solid #cda53a; border-bottom:1px solid #cda53a; background:repeating-linear-gradient(115deg,#e7bc43 0px,#e7bc43 25px,#171717 25px,#171717 49px); position:relative; }
+    .tape span { position:absolute; inset:0; display:flex; justify-content:center; align-items:center; font:900 10px ui-monospace,Consolas,monospace; letter-spacing:.33em; color:#f9d97e; text-shadow:0 1px 5px #000; background:linear-gradient(90deg,transparent,#070707f0 28%,#070707f0 72%,transparent); }
+    @media(max-width:780px) { header { padding:29px 24px 12px; } .header-label {font-size:9px;} main {padding:60px 0 48px;} .hero { grid-template-columns:1fr; gap:10px; } .art { grid-row:1; margin-bottom:0; } .blade-image {width:min(70vw,300px)} .art::before {width:min(65vw,290px)} .art::after {display:none;} h1 {font-size:clamp(50px,11vw,86px)} .copy {text-align:center;} .divider {margin:0 auto 27px;} .sub {margin:0 auto 29px;} .actions {justify-content:center;} .bottom {grid-template-columns:1fr;} .info + .info {border-left:0; border-top:1px solid var(--line);} footer {flex-wrap:wrap;} }
+    @media(max-width:440px) { .brand {font-size:16px;letter-spacing:.10em} .header-label {max-width:118px;text-align:right;letter-spacing:.05em} .button {flex:1 1 100%} h1 {font-size:clamp(42px,11vw,60px)} .tape span {font-size:8px;letter-spacing:.13em} }
+    @media(prefers-reduced-motion:reduce) { *, *::before,*::after {scroll-behavior:auto!important;transition:none!important;} }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="frame">
+    <header>
+      <a class="brand" href="./index.html" aria-label="CHROM.CC home"><img class="brand-mark" src="assets/mantis-blade.jpg" alt=""> CHROM.CC</a>
+      <span class="header-label"><span class="live"></span> SITE DEVELOPMENT / ACTIVE</span>
+    </header>
+    <main>
+      <div class="hero">
+        <section class="copy">
+          <div class="status">WORK IN PROGRESS</div>
+          <p class="eyebrow" style="margin-top:29px">// CHROM NETWORK — PUBLIC NOTICE</p>
+          <h1>UNDER<br><span>CONSTRUCTION.</span></h1>
+          <div class="divider"></div>
+          <p class="sub">We're building something new for the CHROM Minecraft community. The website is being prepared behind the scenes. Stay connected for updates.</p>
+          <div class="actions">
+            <a class="button primary" href="https://discord.gg/fYM2HsyeX3" target="_blank" rel="noopener noreferrer">JOIN DISCORD <span aria-hidden="true">↗</span></a>
+            <a class="button" href="https://www.youtube.com/@ChromSMP" target="_blank" rel="noopener noreferrer">YOUTUBE <span aria-hidden="true">↗</span></a>
+          </div>
+          <span id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></span>
+        </section>
+        <div class="art"><img class="blade-image" src="assets/mantis-blade.jpg" alt="Single monochrome cybernetic mantis blade, CHROM logo"></div>
+      </div>
+      <div class="bottom">
+        <div class="info"><small>Minecraft Java server IP</small><strong>chrom.cc <button type="button" id="copy-ip" aria-label="Copy Minecraft server IP">COPY IP</button></strong></div>
+        <div class="info"><small>Web address</small><strong><a href="https://chrom.cc" target="_blank" rel="noopener noreferrer">https://chrom.cc ↗</a></strong></div>
+        <div class="info"><small>Current status</small><strong style="color:#e9c965">WEBSITE IN DEVELOPMENT</strong></div>
+      </div>
+    </main>
+    <div class="tape" aria-hidden="true"><span>CAUTION /// SITE UNDER CONSTRUCTION /// CAUTION</span></div>
+    <footer><span>© <span id="year">2026</span> CHROM.CC. ALL RIGHTS RESERVED.</span><span>BUILD STATUS: IN PROGRESS // 001</span></footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const copyButton = document.getElementById('copy-ip');
+    const feedback = document.getElementById('copy-feedback');
+
+    copyButton.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText('chrom.cc');
+        } else {
+          const field = document.createElement('textarea');
+          field.value = 'chrom.cc';
+          field.setAttribute('readonly', '');
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+          const copied = document.execCommand('copy');
+          field.remove();
+          if (!copied) throw new Error('Copy unavailable');
+        }
+        copyButton.textContent = 'COPIED';
+        feedback.textContent = 'Minecraft IP copied: chrom.cc';
+      } catch {
+        feedback.textContent = 'Copy unavailable. Select chrom.cc and copy it manually.';
+      }
+    });
+  </script>
+</body>
+</html>
